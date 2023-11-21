@@ -5,6 +5,11 @@
     "workspaceFolder": "/workspace",
     "service": "app",
     "shutdownAction": "stopCompose",
+    "features": {
+        "docker-from-docker": {
+		        "version": "latest"
+        }
+    },
     "extensions": [
 		"editorconfig.editorconfig",
         "ryannaddy.laravel-artisan",
