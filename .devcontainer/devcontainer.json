@@ -13,29 +13,39 @@
             "version": "latest"
         }
     },
-    "extensions": [
-		"editorconfig.editorconfig",
-        "ryannaddy.laravel-artisan",
-        "amiralizadeh9480.laravel-extra-intellisense",
-        "stef-k.laravel-goto-controller",
-        "codingyu.laravel-goto-view",
-        "mikestead.dotenv",
-        "eg2.tslint",
-        "christian-kohler.path-intellisense",
-        "esbenp.prettier-vscode",
-        "CoenraadS.bracket-pair-colorizer"
-	],
-    "settings": {
-        "#terminal.integrated.shell.linux": "/bin/bash"
+    "customizations": {
+        // Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create
+            "extensions": [
+                "editorconfig.editorconfig",
+                "ryannaddy.laravel-artisan",
+                "amiralizadeh9480.laravel-extra-intellisense",
+                "stef-k.laravel-goto-controller",
+                "codingyu.laravel-goto-view",
+                "mikestead.dotenv",
+                "eg2.tslint",
+                "christian-kohler.path-intellisense",
+                "esbenp.prettier-vscode",
+                "CoenraadS.bracket-pair-colorizer"
+            ],
+            "settings": {
+                "#terminal.integrated.shell.linux": "/bin/bash"
+            }
+        }
     },
+
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    "forwardPorts": [80],
+    "forwardPorts": [8888, 4442],
 
     // Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && npm install && npm run development",
+	"postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && npm install && npm run build",
 	"portsAttributes": {
-		"80": {
+		"8888": {
 			"label": "HTTP"
-		}
+		},
+        "4442": {
+            "label": "HTTPS"
+        }
 	}
 }
