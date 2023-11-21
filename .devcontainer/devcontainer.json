@@ -8,6 +8,9 @@
     "features": {
         "docker-from-docker": {
 		        "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/sshd:1": {
+            "version": "latest"
         }
     },
     "extensions": [
