@@ -5,7 +5,7 @@ services:
     volumes:
       - ../:/workspace:cached
     ports:
-      - 80:80
+      - 8888:80
     tty: true
     init: true
     environment:
@@ -18,7 +18,7 @@ services:
     image: postgres:16
     restart: unless-stopped
     ports:
-        - 5432:5432
+        - 5433:5432
     environment:
         POSTGRES_DB: laravel
         POSTGRES_USER: laravel

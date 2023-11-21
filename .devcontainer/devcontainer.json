@@ -6,11 +6,9 @@
     "service": "app",
     "shutdownAction": "stopCompose",
     "features": {
+        // ターミナルからdockerコマンドを使用してコンテナ操作可
         "docker-from-docker": {
 		        "version": "latest"
-        },
-        "ghcr.io/devcontainers/features/sshd:1": {
-            "version": "latest"
         }
     },
     "customizations": {
@@ -36,16 +34,18 @@
     },
 
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    "forwardPorts": [8888, 4442],
+    "forwardPorts": [8888, 5433],
 
     // Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && npm install && npm run build",
+	"postCreateCommand": "cp .env.example .env && composer install && php artisan key:generate && php artisan migrate:fresh --seed && npm install && npm run build",
 	"portsAttributes": {
+        // デスクトップVSCode起動時、ローカルからhttp://localhost:8888でLaravel Web App接続可能
 		"8888": {
 			"label": "HTTP"
 		},
-        "4442": {
-            "label": "HTTPS"
-        }
+        // デスクトップVSCode起動時、ローカルからlocalhost:5433でA5Mk2などから接続可能
+        "5433": {
+			"label": "PostgreSQL"
+		}
 	}
 }
